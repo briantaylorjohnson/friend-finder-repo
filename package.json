@@ -1,0 +1,23 @@
+{
+  "name": "friend-finder-repo",
+  "version": "1.0.0",
+  "description": "Connect to new friends using a survey to evaluate compatibility and make friend matches",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/briantaylorjohnson/friend-finder-repo.git"
+  },
+  "author": "BTJ",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/briantaylorjohnson/friend-finder-repo/issues"
+  },
+  "homepage": "https://github.com/briantaylorjohnson/friend-finder-repo#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
