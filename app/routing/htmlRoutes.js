@@ -6,8 +6,13 @@ var path = require("path");
 // The home.html page is the default when a specific page is not specified
 module.exports = function(app)
 {
-    // Default routing to home.html when a specific page is not specified in the request path
+    // Default routing to home.html when a specific page is not specified in the request path; also ensures that /home resolves to the home.html
     app.get("/", function(req, res)
+    {
+        res.sendFile(path.join(__dirname, "../public/home.html"));    
+    });
+
+    app.get("/home", function(req, res)
     {
         res.sendFile(path.join(__dirname, "../public/home.html"));    
     });
