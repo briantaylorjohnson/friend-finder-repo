@@ -17,4 +17,4 @@ app.listen(PORT, function() {
 
 // Sets the required routing for HTML pages and APIs
 require("./app/routing/htmlRoutes.js")(app);
-//require("./app/routing/apiRoutes.js")(app);
+require("./app/routing/apiRoutes.js")(app);
