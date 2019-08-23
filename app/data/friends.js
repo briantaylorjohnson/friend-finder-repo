@@ -15,7 +15,41 @@ var friends = [
           8,
           9
       ]
-    }
+    },
+
+    {
+        name: "Eric Toadman",
+        image: "",
+        scores: [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+        ]
+      },
+
+      {
+        name: "Fred Bear",
+        image: "",
+        scores: [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+        ]
+      }
 ];
 
 module.exports = friends;

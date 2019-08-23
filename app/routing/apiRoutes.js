@@ -14,13 +14,20 @@ module.exports = function(app)
     app.post("/api/friends", function(req, res)
     {
         var name = req.body.name;
+        var test = [];
+
+        for(i = 0; i < newFriends.length; i++)
+        {
+            test.push(newFriends[i].name);
+        }
 
         res.json(
             [
                 {
                     "outcome": 200,
                     "outcomeMesasge": "Success",
-                    "name": name
+                    "namePassed": name,
+                    "friendNames": test
                 }
             ]
         )
