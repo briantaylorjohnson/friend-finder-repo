@@ -1,3 +1,5 @@
+import { relative } from "path";
+
 $(document).ready(function()
 {
 
@@ -63,9 +65,9 @@ $(document).ready(function()
 
         console.log(relativeURL);
 
-        $.post(relativeURL + "/api/friends", personPackage, function(res)
+        $.post(relative + "/api/friends", personPackage, function(data)
         {
-            console.log(res);
+            console.log(data);
         });
 
     });
