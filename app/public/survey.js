@@ -1,5 +1,3 @@
-import { relative } from "path";
-
 $(document).ready(function()
 {
 
@@ -45,7 +43,7 @@ $(document).ready(function()
         {
             "name": personName, 
             "profilePicture": personPicURL, 
-            "answers":
+            "scores":
             [
                 q1,
                 q2,
@@ -65,12 +63,9 @@ $(document).ready(function()
 
         console.log(relativeURL);
 
-        $.post(relative + "/api/friends", personPackage, function(data)
+        $.post(relativeURL + "/api/friends", personPackage, function(data)
         {
             console.log(data);
         });
-
     });
-
-
 });
