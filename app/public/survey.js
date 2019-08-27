@@ -3,6 +3,9 @@ $(document).ready(function()
 
     $("#submit-button").on("click", function(event)
     {
+        $("#match-result-msg").empty();
+        $("#match-result-pic").empty();
+
         event.preventDefault();
 
         // Local Variables
@@ -60,12 +63,33 @@ $(document).ready(function()
 
         // Console log for personPackage object
         console.log(personPackage);
-
+        
         console.log(relativeURL);
 
         $.post(relativeURL + "/api/friends", personPackage, function(data)
         {
             console.log(data);
+            
+            if(data[0].friendName != "")
+            {
+                var matchProfilePicImgTag = $("<img>");
+                matchProfilePicImgTag.attr(
+                {
+                    "src": data[0].friendProfilePicURL, 
+                    "alt": "Match Profile Pic",
+                    "style": "width:200px;"
+                });
+
+                $("#match-result-msg").append("Congratulations! You have a friend match. <br />Time to meet " + data[0].friendName + "!");
+                $("#match-result-pic").append(matchProfilePicImgTag);
+                $("#match-result").modal(); 
+            }
+
+            else
+            {
+                $("#match-result-msg").append("Unfortunately, we were unable to match you with a friend. <br />Please try again another time!");
+                $("#match-result").modal(); 
+            }
         });
     });
 });
