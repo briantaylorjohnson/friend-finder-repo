@@ -10,6 +10,7 @@ $(document).ready(function()
 
         // Local Variables
         var relativeURL = window.location.origin;
+        var formEmpty = false;
 
         // Personal Information
         var personName = $("#formGroupNameInput").val();
@@ -61,6 +62,34 @@ $(document).ready(function()
             ]
         }
 
+        // Conditionals which validate that form is filled out in full by the user
+        if (personPackage.name != "")
+        {
+            if (personPackage.profilePicture != "")
+            {
+                for (i = 0; i < personPackage.scores.length; i++)
+                {
+                    if (isNaN(personPackage.scores[i]) == true)
+                    {
+                        console.log("Error: A question is empty in form!");
+                        formEmpty = true;
+                    }
+                }
+            }
+
+            else
+            {
+                console.log("Error: Profile pic URL is empty in form!");
+                formEmpty = true;
+            }
+        }
+
+        else if (personPackage.name == "")
+        {
+            console.log("Error: Name is empty in form!");
+            formEmpty = true;
+        }
+
         // Console log for personPackage object
         console.log(personPackage);
         
@@ -70,14 +99,31 @@ $(document).ready(function()
         {
             console.log(data);
             
-            if(data[0].friendName != "")
+            if (formEmpty == true)
+            {
+                var matchProfilePicImgTag = $("<img>");
+                matchProfilePicImgTag.attr(
+                {
+                    "src": "https://media.giphy.com/media/m7BTtLWhjkEJa/giphy.gif", 
+                    "alt": "Incomplete Form Pic!",
+                    "class": "text-center img-fluid",
+                    "style": "max-width: 100%; height: auto;"
+                });
+
+                $("#match-result-msg").append("Whoopsie! Looks like you didn't complete the survey fully. Answer all the questions and then submit it again.");
+                $("#match-result-pic").append(matchProfilePicImgTag);
+                $("#match-result").modal(); 
+            }
+
+            else if(data[0].friendName != "")
             {
                 var matchProfilePicImgTag = $("<img>");
                 matchProfilePicImgTag.attr(
                 {
                     "src": data[0].friendProfilePicURL, 
                     "alt": "Match Profile Pic",
-                    "style": "width:200px;"
+                    "class": "text-center img-fluid",
+                    "style": "max-width: 100%; height: auto;"
                 });
 
                 $("#match-result-msg").append("Congratulations! You have a friend match. <br />Time to meet " + data[0].friendName + "!");
@@ -88,7 +134,17 @@ $(document).ready(function()
 
             else
             {
+                var matchProfilePicImgTag = $("<img>");
+                matchProfilePicImgTag.attr(
+                {
+                    "src": "https://media.giphy.com/media/m7BTtLWhjkEJa/giphy.gif", 
+                    "alt": "Oops Profile Pic!",
+                    "class": "text-center img-fluid",
+                    "style": "max-width: 100%; height: auto;"
+                });
+
                 $("#match-result-msg").append("Unfortunately, we were unable to match you with a friend. <br />Please try again another time!");
+                $("#match-result-pic").append(matchProfilePicImgTag);
                 $("#match-result").modal(); 
             }
         });
