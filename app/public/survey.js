@@ -82,6 +82,7 @@ $(document).ready(function()
 
                 $("#match-result-msg").append("Congratulations! You have a friend match. <br />Time to meet " + data[0].friendName + "!");
                 $("#match-result-pic").append(matchProfilePicImgTag);
+                $(".form-check-input").prop("checked", false);
                 $("#match-result").modal(); 
             }
 
