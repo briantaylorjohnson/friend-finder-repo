@@ -59,12 +59,12 @@ After the the iterations are executed, the best friend match is included in the 
 **Metadata/Outcome Message:** outcome description\
 **NewFriends/Name:** potential friend's name\
 **NewFriends/Image:** potential friend's profile picture URL\
-**NewFriends/Scores:** array of scores/answers from the potential friend's survey -- they maintain the same order as the questions in the survey\
+**NewFriends/Scores:** array of scores/answers from the potential friend's survey -- they maintain the same order as the questions in the survey
 
 ### POST Friends
-**Description:** posts the survey participant's name, profile picture URL, and answers to all ten questions; receives a friend match in the response\
+**Description:** posts the survey participant's name, profile picture URL, and answers to all ten questions; receives a friend match in the response
 **Request Method:** POST\
-**Request URI:** /api/friends\
+**Request URI:** /api/friends
 
 **JSON Request Model:**
 ```json
@@ -88,7 +88,7 @@ After the the iterations are executed, the best friend match is included in the 
 
 **Name:** survey participant's name\
 **Image:** survey participant's profile picture URL\
-**Scores:** answers to each survey question in an arry of integers -- they maintain the same order as the questions in the survey\
+**Scores:** answers to each survey question in an arry of integers -- they maintain the same order as the questions in the survey
 
 **JSON Response Model:**
 ```json
