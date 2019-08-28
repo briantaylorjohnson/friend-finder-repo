@@ -1,22 +1,25 @@
+// Executes the Javascript once the document has fully loaded
 $(document).ready(function()
 {
-
+    // Listener which executes the code contained within the function when the Submit button in the survey is clicked
     $("#submit-button").on("click", function(event)
     {
+        // Prevents the default outcome from occuring when the Submit button is clicked
+        event.preventDefault();
+
+        // Ensures that the Result Modal is empty from previous submissions
         $("#match-result-msg").empty();
         $("#match-result-pic").empty();
 
-        event.preventDefault();
+        // Local Variables need for the Javascript to run
+        var relativeURL = window.location.origin; // Captures the relative URL for the page so that API requests can be made
+        var formEmpty = false; // Boolean indicating if the form has any empty fields
 
-        // Local Variables
-        var relativeURL = window.location.origin;
-        var formEmpty = false;
-
-        // Personal Information
+        // Personal Information Variables
         var personName = $("#formGroupNameInput").val();
         var personPicURL = $("#formGroupPicURLInput").val();
         
-        // Survey Answers
+        // Survey Answer Variables
         var q1 = parseInt($("input[name='inlineRadioOptions1']:checked").val());
         var q2 = parseInt($("input[name='inlineRadioOptions2']:checked").val());
         var q3 = parseInt($("input[name='inlineRadioOptions3']:checked").val());
@@ -28,7 +31,7 @@ $(document).ready(function()
         var q9 = parseInt($("input[name='inlineRadioOptions9']:checked").val());
         var q10 = parseInt($("input[name='inlineRadioOptions10']:checked").val());
 
-        // Console log for survey data
+        // Console logs the participant's name and profile picture URL, as well as the answers to each survey question
         console.log("Name: " + personName);
         console.log("Profile Picture URL: " + personPicURL);
         console.log("Q1: " + q1);
@@ -67,6 +70,7 @@ $(document).ready(function()
         {
             if (personPackage.profilePicture != "")
             {
+                // Checks that each survey question has been answered if the name and profile pic URL have been provided
                 for (i = 0; i < personPackage.scores.length; i++)
                 {
                     if (isNaN(personPackage.scores[i]) == true)
@@ -77,6 +81,7 @@ $(document).ready(function()
                 }
             }
 
+            // Checks to see if the profile pic URL text entry box is incomplete
             else
             {
                 console.log("Error: Profile pic URL is empty in form!");
@@ -84,21 +89,23 @@ $(document).ready(function()
             }
         }
 
+        // Checks to see if the name text entry box is incomplete
         else if (personPackage.name == "")
         {
             console.log("Error: Name is empty in form!");
             formEmpty = true;
         }
 
-        // Console log for personPackage object
+        // Console logs the personPackage object for debugging purposes
         console.log(personPackage);
-        
-        console.log(relativeURL);
 
+        // Invokes the Friends API POST method to execute the friend match logic
         $.post(relativeURL + "/api/friends", personPackage, function(data)
         {
+            // Console logs the response from the Friends API POST method for debugging purposes
             console.log(data);
             
+            // Conditional which uses the formEmpty variable to output the correct message if the form is incomplete
             if (formEmpty == true)
             {
                 var matchProfilePicImgTag = $("<img>");
@@ -115,6 +122,8 @@ $(document).ready(function()
                 $("#match-result").modal(); 
             }
 
+            // Conditional which checks to see if the matched friend's name in the Friends API POST method reponse is empty
+            // This indicates that no match was found and will output the correct mesage to the participant
             else if(data[0].friendName != "")
             {
                 var matchProfilePicImgTag = $("<img>");
@@ -132,6 +141,7 @@ $(document).ready(function()
                 $("#match-result").modal(); 
             }
 
+            // Conditional which runs if the form was submitted completely and a friend match was found
             else
             {
                 var matchProfilePicImgTag = $("<img>");

@@ -1,4 +1,4 @@
-// Required Dependencies
+// Required dependencies for this to execute successfully
 var express = require("express");
 var path = require("path");
 

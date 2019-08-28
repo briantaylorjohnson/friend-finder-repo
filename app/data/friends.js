@@ -1,4 +1,4 @@
-// Friends data with name, profile image, and scores for ten survey questions
+// Friends data with name, profile image URL, and scores for ten survey questions
 var friends = [
   {
     "name": "Road Runner",
