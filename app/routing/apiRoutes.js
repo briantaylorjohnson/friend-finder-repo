@@ -9,7 +9,17 @@ module.exports = function(app)
     app.get("/api/friends", function(req, res)
     {  
         // Returns the data in the JSON format
-        res.json(newFriends);
+        res.json(
+        [
+            {
+                "metadata":
+                {
+                    "outcome": 200,
+                    "outcomeMesasge": "Success - Possible New Friends Retrieved"
+                },
+                "newFriends": newFriends
+            }
+        ]);
     });
 
     // Route for the Friends API POST method which will take the data survey data passed in the request and execute the friend match algorithm
