@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/briantaylorjohnson/friend-finder-repo#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "http": "0.0.0",
     "path": "^0.12.7"
   },
